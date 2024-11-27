@@ -5,9 +5,9 @@
     <input formControlName="texte" matInput placeholder="Ex. Sortir les poubelles">
 
     @if(formulaire.get("texte")?.hasError("minlength")) {
-      <mat-error>Le texte de la tache doit comporter au moins 5 caractères</mat-error>
+    <mat-error>Le texte de la tache doit comporter au moins 5 caractères</mat-error>
     } @else {
-      <mat-error>Le texte de la tache est obligatoire</mat-error>
+    <mat-error>Le texte de la tache est obligatoire</mat-error>
     }
 
 

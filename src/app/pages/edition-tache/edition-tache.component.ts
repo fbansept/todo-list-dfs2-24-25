@@ -1,8 +1,9 @@
+import { HttpClient } from '@angular/common/http';
 import { Component, inject } from '@angular/core';
 import { FormBuilder, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatInputModule } from '@angular/material/input';
-import { RouterLink } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-edition-tache',
@@ -19,6 +20,8 @@ import { RouterLink } from '@angular/router';
 export class EditionTacheComponent {
 
   formBuilder = inject(FormBuilder)
+  http = inject(HttpClient)
+  router = inject(Router)
 
   formulaire = this.formBuilder.group(
     {
@@ -27,9 +30,12 @@ export class EditionTacheComponent {
   )
 
   onAjoutTache() {
-    if(this.formulaire.valid) {
-      console.log(this.formulaire.value);
-      
+    if (this.formulaire.valid) {
+
+      this.http
+        .post("http://localhost:3000/tache", this.formulaire.value)
+        .subscribe(reponse => this.router.navigateByUrl("/"))
+
     }
   }
 
