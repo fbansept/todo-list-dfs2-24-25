@@ -31,11 +31,10 @@ export class ConnexionComponent {
 
     if (this.formulaire.valid) {
 
-      this.http.post("/connexion", this.formulaire.value)
-        .subscribe((reponse: any) => console.log(reponse.jwt))
-
+      this.http.post<{ jwt: string }>(
+        "http://localhost:3000/connexion",
+        this.formulaire.value)
+        .subscribe(reponse => localStorage.setItem("jwt", reponse.jwt))
     }
   }
-
-
 }
