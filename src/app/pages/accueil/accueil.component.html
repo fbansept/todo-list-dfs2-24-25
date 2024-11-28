@@ -6,14 +6,19 @@
 
 @for (tache of taches; track $index) {
 
-<div class="tache">
-  <div>{{tache.texte}}</div>
-  <button 
-      mat-icon-button 
-      (click)="onSuppressionTache(tache.id)">
+<div class="tache" [class.tache-termine]="tache.fini">
+  <button mat-icon-button (click)="onInversionStatus(tache)">
+    <mat-icon>{{tache.fini ? 'check_box' :'check_box_outline_blank'}}</mat-icon>
+  </button>
+
+  <mat-checkbox [checked]="tache.fini ? true : false" (click)="onInversionStatus(tache)">Check me!</mat-checkbox>
+
+  <div>{{tache.texte}} <i>Ajouté le {{tache.date_creation | date:"dd/MM/yy à hh:mm" }}</i></div>
+  <button mat-icon-button (click)="onSuppressionTache(tache.id)">
     <mat-icon>delete</mat-icon>
   </button>
 </div>
+
 
 
 }
