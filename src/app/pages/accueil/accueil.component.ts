@@ -21,7 +21,10 @@ export class AccueilComponent {
   taches: any
 
   ngOnInit() {
+    this.rafraichir()
+  }
 
+  rafraichir() {
     this.http
       .get("http://localhost:3000/taches")
       .subscribe((tachesServeur: any) => this.taches = tachesServeur)
@@ -30,8 +33,7 @@ export class AccueilComponent {
   onSuppressionTache(idTacheAsupprimer: number) {
 
     this.http.delete(`http://localhost:3000/tache/${idTacheAsupprimer}`)
-      .subscribe(resultat => console.log(resultat));
-
+      .subscribe(resultat => this.rafraichir());
 
   }
 
