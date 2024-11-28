@@ -6,6 +6,14 @@
 
 @for (tache of taches; track $index) {
 
-<div>{{tache.texte}}</div>
+<div class="tache">
+  <div>{{tache.texte}}</div>
+  <button 
+      mat-icon-button 
+      (click)="onSuppressionTache(tache.id)">
+    <mat-icon>delete</mat-icon>
+  </button>
+</div>
+
 
 }
